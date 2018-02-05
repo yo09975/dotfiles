@@ -3,6 +3,11 @@
 
 syntax on
 
+" Install vim-colors-solarized from
+" https://github.com/altercation/vim-colors-solarized
+set background=dark
+colorscheme solarized
+
 set autoindent " copy indent from current line when starting new line
 set autoread " Read changes made outside of Vim if file unmodified in Vim
 set autowrite
