@@ -1,12 +1,28 @@
 " Vim configuration
-" 11/2/2018
+" 08/05/2022
 syntax on
 filetype plugin indent on
 
-" Install vim-colors-solarized from
-" https://github.com/altercation/vim-colors-solarized
 set background=dark
-colorscheme solarized
+
+" VUNDLE PLUGIN CONFIGURATION
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'ycm-core/YouCompleteMe'
+call vundle#end()
+" END VUNDLE PLUGIN CONFIGURATION
+
+" YouCompleteMe configuration
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_clangd_binary_path = '/usr/bin/clangd'
+" End YouCompleteMe configuration
+
+" Shift+k now opens man(3)
+setlocal keywordprg+=\ 3
 
 set autoindent " copy indent from current line when starting new line
 set autoread " Read changes made outside of Vim if file unmodified in Vim
@@ -70,12 +86,21 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up>    :echoe "Use k"<CR>
 nnoremap <Down>  :echoe "Use j"<CR>
 
-" Toggle key for numbering
+" Toggle keys for numbering
 nnoremap <silent> <leader>nb :set relativenumber!<CR>
+nnoremap <silent> <leader>nn :set nonumber!<CR>
+nnoremap <silent> <leader>n :set number!<CR>
 
 " Move to beginning/end of line
 nnoremap B ^
 nnoremap E $
 
 " Press <leader> Enter to remove search highlights
-noremap <silent> <leader><cr> :noh<cr>
+noremap <silent> <leader><CR> :noh<CR>
+
+" Write file with WW in insert/normal mode
+nnoremap WW :w<cr>
+inoremap WW :w<cr>
+
+" Exit insert mode with jj
+inoremap jj <ESC>
